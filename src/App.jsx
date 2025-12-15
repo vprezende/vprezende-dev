@@ -1,5 +1,5 @@
-import { useState, useEffect, useRef } from "react"
-import { motion, AnimatePresence } from "framer-motion"
+import { useState, useEffect, useRef, useMemo } from "react"
+import { AnimatePresence } from "framer-motion"
 import { Button } from "@/components/ui/button.jsx"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card.jsx"
 import { Badge } from "@/components/ui/badge.jsx"
@@ -21,13 +21,6 @@ const magicalHover = {
   scale: 1.05,
   y: -5,
   boxShadow: "0px 0px 25px rgba(59, 130, 246, 0.5)",
-  transition: { type: "spring", stiffness: 300, damping: 20 }
-};
-
-const legendaryHover = {
-  scale: 1.05,
-  y: -5,
-  boxShadow: "0px 0px 25px rgba(234, 179, 8, 0.5)",
   transition: { type: "spring", stiffness: 300, damping: 20 }
 };
 
@@ -90,12 +83,11 @@ function App() {
   const [isLangMenuOpen, setIsLangMenuOpen] = useState(false)
   const [activeSection, setActiveSection] = useState("home")
   const [showScrollTop, setShowScrollTop] = useState(false)
-  const [selectedSkill, setSelectedSkill] = useState(null)
 
   const data = lang === "pt" ? dataPT : dataEn;
   const experienceData = lang == "pt" ? experienceDataPT : experienceDataEN;
 
-  const navOrder = ["home", "about", "skills", "experience", "projects", "contact"]
+  const navOrder = useMemo(() => ["home", "about", "skills", "experience", "projects", "contact"], []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -119,19 +111,11 @@ function App() {
     }
     window.addEventListener("scroll", handleScroll)
     return () => window.removeEventListener("scroll", handleScroll)
-  }, [])
+  }, [navOrder])
 
   const scrollTo = (id) => {
     setIsMenuOpen(false)
     document.getElementById(id)?.scrollIntoView({ behavior: "smooth" })
-  }
-
-  const handleSkillClick = (skill) => {
-    if (selectedSkill === skill) {
-      setSelectedSkill(null)
-    } else {
-      setSelectedSkill(skill)
-    }
   }
 
   useEffect(() => {
@@ -502,12 +486,8 @@ function App() {
                 {skillsData.mobile.map(skill => (
                   <motion.div
                     key={skill.name}
-                    onClick={() => handleSkillClick(skill.name)}
                     whileHover={{ x: 5, scale: 1.02, backgroundColor: "rgba(4, 170, 255, 0.1)" }}
-                    className={`flex items-center justify-between p-3 bg-background rounded-lg border cursor-pointer transition-all duration-300 ${selectedSkill === skill.name
-                      ? "border-primary shadow-[0_0_15px_rgba(59,130,246,0.5)] bg-primary/10"
-                      : "border-border"
-                      }`}
+                    className={`flex items-center justify-between p-3 bg-background rounded-lg border cursor-pointer transition-all duration-300`}
                   >
                     <span>{skill.name}</span>
                     <div className="flex gap-1">
@@ -527,12 +507,8 @@ function App() {
                 {skillsData.backend.map(skill => (
                   <motion.div
                     key={skill.name}
-                    onClick={() => handleSkillClick(skill.name)}
                     whileHover={{ x: 5, scale: 1.02, backgroundColor: "rgba(34, 197, 94, 0.1)" }}
-                    className={`flex items-center justify-between p-3 bg-background rounded-lg border cursor-pointer transition-all duration-300 ${selectedSkill === skill.name
-                      ? "border-green-500 shadow-[0_0_15px_rgba(34,197,94,0.5)] bg-green-500/10"
-                      : "border-border"
-                      }`}
+                    className={`flex items-center justify-between p-3 bg-background rounded-lg border cursor-pointer transition-all duration-300`}
                   >
                     <span>{skill.name}</span>
                     <div className="flex gap-1">
@@ -552,12 +528,8 @@ function App() {
                 {skillsData.tools.map(skill => (
                   <motion.div
                     key={skill.name}
-                    onClick={() => handleSkillClick(skill.name)}
                     whileHover={{ x: 5, scale: 1.02, backgroundColor: "rgba(168, 85, 247, 0.1)" }}
-                    className={`flex items-center justify-between p-3 bg-background rounded-lg border cursor-pointer transition-all duration-300 ${selectedSkill === skill.name
-                      ? "border-purple-500 shadow-[0_0_15px_rgba(168,85,247,0.5)] bg-purple-500/10"
-                      : "border-border"
-                      }`}
+                    className={`flex items-center justify-between p-3 bg-background rounded-lg border cursor-pointer transition-all duration-300`}
                   >
                     <span>{skill.name}</span>
                     <div className="flex gap-1">
@@ -594,7 +566,7 @@ function App() {
             viewport={viewportConfig}
             className="space-y-8"
           >
-            {experienceData.list.map((job, idx) => (
+            {experienceData.list.map((job) => (
               <motion.div
                 key={job.id}
                 variants={itemVariants}
