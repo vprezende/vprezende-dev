@@ -20,7 +20,7 @@ This project leverages the latest ecosystem for React development:
 
 ### Prerequisites
 
-Ensure you have **Node.js** installed. This project uses **pnpm** as the package manager.
+Ensure you have **Node.js** installed. This project uses **npm** as the package manager.
 
 ### Installation
 
@@ -33,13 +33,13 @@ Ensure you have **Node.js** installed. This project uses **pnpm** as the package
 2.  **Install dependencies:**
 
     ```bash
-    pnpm install
+    npm install
     ```
 
 3.  **Start the development server:**
 
     ```bash
-    pnpm dev
+    npm dev
     ```
 
     The app will run at `http://localhost:5173`.
@@ -67,33 +67,6 @@ We have configured a local **pre-commit hook** (located in `.githooks/pre-commit
     ```js
     import.meta.env.VITE_YOUR_KEY
     ```
-
-## 📊 Vercel Analytics
-
-Integration with Vercel Analytics is built-in.
-
-### Automatic Usage (Default)
-
-The project includes a dynamic loader at `src/analytics.jsx`. It attempts to import the analytics package only if it is installed, failing silently otherwise. This allows the app to run locally without issues even if the package is missing.
-
-### Manual Import
-
-If you prefer explicit imports, you can add it to your main entry file (`src/main.jsx`) or layout:
-
-```jsx
-import { Analytics } from '@vercel/analytics/react'
-
-function AppWrapper() {
-  return (
-    <>
-      <App />
-      <Analytics />
-    </>
-  )
-}
-```
-
-**Deployment Note:** When deploying to Vercel, check the Analytics dashboard in your project settings to view visitor data.
 
 ## 📦 Scripts
 
