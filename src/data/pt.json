@@ -43,7 +43,20 @@
   "projects": {
     "title": "Projetos",
     "subtitle": "Soluções reais desenvolvidas recentemente",
-    "status": { "dev": "Em Desenvolvimento", "done": "Concluído", "public": "Open Source" }
+    "status": {
+      "dev": {
+        "label": "Em Desenvolvimento",
+        "className": "bg-yellow-500/10 text-yellow-500 border-yellow-500/30"
+      },
+      "done": {
+        "label": "Concluído",
+        "className": "bg-green-500/10 text-green-500 border-green-500/30"
+      },
+      "public": {
+        "label": "Open Source",
+        "className": "bg-purple-500/10 text-purple-500 border-purple-500/30"
+      }
+    }
   },
   "skills": {
     "title": "Habilidades",

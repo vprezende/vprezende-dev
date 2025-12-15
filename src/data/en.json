@@ -32,8 +32,16 @@
     "languages": {
       "title": "Languages",
       "list": [
-        { "name": "Portuguese", "level": "Native", "progress": 100 },
-        { "name": "English", "level": "B1", "progress": 60 }
+        {
+          "name": "Portuguese",
+          "level": "Native",
+          "progress": 100
+        },
+        {
+          "name": "English",
+          "level": "B1",
+          "progress": 60
+        }
       ]
     },
     "stats": {
@@ -43,15 +51,44 @@
   "projects": {
     "title": "Projects",
     "subtitle": "Real solutions developed recently",
-    "status": { "dev": "In Development", "done": "Completed", "public": "Open Source" }
+    "status": {
+      "dev": {
+        "label": "In Development",
+        "className": "bg-yellow-500/10 text-yellow-500 border-yellow-500/30"
+      },
+      "done": {
+        "label": "Completed",
+        "className": "bg-green-500/10 text-green-500 border-green-500/30"
+      },
+      "public": {
+        "label": "Open Source",
+        "className": "bg-purple-500/10 text-purple-500 border-purple-500/30"
+      }
+    }
   },
   "skills": {
     "title": "Skills",
     "subtitle": "Technologies & Tools I master",
     "list": {
-      "mobile": ["Flutter", "Dart", "Firebase", "Mobile Architecture"],
-      "backend": ["PostgreSQL", "SQLite", "MongoDB", "Prisma"],
-      "tools": ["Docker", "Linux", "Figma", "Insomnia", "Git/GitHub"]
+      "mobile": [
+        "Flutter",
+        "Dart",
+        "Firebase",
+        "Mobile Architecture"
+      ],
+      "backend": [
+        "PostgreSQL",
+        "SQLite",
+        "MongoDB",
+        "Prisma"
+      ],
+      "tools": [
+        "Docker",
+        "Linux",
+        "Figma",
+        "Insomnia",
+        "Git/GitHub"
+      ]
     }
   },
   "contact": {

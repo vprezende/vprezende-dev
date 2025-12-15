@@ -1,21 +1,21 @@
-import { useState, useEffect, useRef } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
-import { Button } from '@/components/ui/button.jsx'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card.jsx'
-import { Badge } from '@/components/ui/badge.jsx'
+import { useState, useEffect, useRef } from "react"
+import { motion, AnimatePresence } from "framer-motion"
+import { Button } from "@/components/ui/button.jsx"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card.jsx"
+import { Badge } from "@/components/ui/badge.jsx"
 
 import * as FaIcons from "react-icons/fa";
 
-import './App.css'
+import "./App.css"
 
-import dataPT from '@/data/pt.json';
-import dataEn from '@/data/en.json';
+import dataPT from "@/data/pt.json";
+import dataEn from "@/data/en.json";
 
-import projectsData from '@/content/projects.json';
-import skillsData from '@/content/skills.json';
+import projectsData from "@/content/projects.json";
+import skillsData from "@/content/skills.json";
 
-import experienceDataPT from '@/content/experience/pt.json';
-import experienceDataEN from '@/content/experience/en.json';
+import experienceDataPT from "@/content/experience/pt.json";
+import experienceDataEN from "@/content/experience/en.json";
 
 const magicalHover = {
   scale: 1.05,
@@ -69,8 +69,8 @@ const CustomCursor = () => {
         cursor.style.top = `${e.clientY}px`
       }
     }
-    window.addEventListener('mousemove', moveCursor)
-    return () => window.removeEventListener('mousemove', moveCursor)
+    window.addEventListener("mousemove", moveCursor)
+    return () => window.removeEventListener("mousemove", moveCursor)
   }, [])
   return <div ref={cursorRef} className="fixed w-6 h-6 border-2 border-primary rounded-full pointer-events-none z-[9999] -translate-x-1/2 -translate-y-1/2 mix-blend-difference hidden md:block" />
 }
@@ -85,17 +85,17 @@ const ParticleBackground = () => {
 }
 
 function App() {
-  const [lang, setLang] = useState('en')
+  const [lang, setLang] = useState("en")
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isLangMenuOpen, setIsLangMenuOpen] = useState(false)
-  const [activeSection, setActiveSection] = useState('home')
+  const [activeSection, setActiveSection] = useState("home")
   const [showScrollTop, setShowScrollTop] = useState(false)
   const [selectedSkill, setSelectedSkill] = useState(null)
 
-  const data = lang === 'pt' ? dataPT : dataEn;
+  const data = lang === "pt" ? dataPT : dataEn;
   const experienceData = lang == "pt" ? experienceDataPT : experienceDataEN;
 
-  const navOrder = ['home', 'about', 'skills', 'experience', 'projects', 'contact']
+  const navOrder = ["home", "about", "skills", "experience", "projects", "contact"]
 
   useEffect(() => {
     const handleScroll = () => {
@@ -106,7 +106,7 @@ function App() {
       setShowScrollTop(scrollY > 500)
 
       if (windowHeight + scrollY >= documentHeight - 100) {
-        setActiveSection('contact')
+        setActiveSection("contact")
         return
       }
 
@@ -117,13 +117,13 @@ function App() {
         }
       }
     }
-    window.addEventListener('scroll', handleScroll)
-    return () => window.removeEventListener('scroll', handleScroll)
+    window.addEventListener("scroll", handleScroll)
+    return () => window.removeEventListener("scroll", handleScroll)
   }, [])
 
   const scrollTo = (id) => {
     setIsMenuOpen(false)
-    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })
+    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" })
   }
 
   const handleSkillClick = (skill) => {
@@ -154,7 +154,7 @@ function App() {
             animate={{ opacity: 1, x: 0, filter: "drop-shadow(0px 0px 0px transparent)" }}
             whileHover={{ scale: 1.05, filter: "drop-shadow(0px 0px 8px rgb(59, 130, 246))" }}
             className="flex items-center text-xl font-bold text-primary cursor-pointer"
-            onClick={() => scrollTo('home')}
+            onClick={() => scrollTo("home")}
           >
             <FaIcons.FaTerminal />
             <span>VR.DEV</span>
@@ -165,7 +165,7 @@ function App() {
               <motion.button
                 key={key}
                 onClick={() => scrollTo(key)}
-                className={`text-sm font-medium transition-colors hover:text-primary ${activeSection === key ? 'text-primary' : 'text-muted-foreground'
+                className={`text-sm font-medium transition-colors hover:text-primary ${activeSection === key ? "text-primary" : "text-muted-foreground"
                   }`}
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.95 }}
@@ -182,7 +182,7 @@ function App() {
                 className="hover:bg-muted gap-2"
               >
                 <FaIcons.FaGlobe className="w-4 h-4" />
-                <span>{lang === 'en' ? 'English' : 'Portuguese'}</span>
+                <span>{lang === "en" ? "English" : "Portuguese"}</span>
                 <motion.div animate={{ rotate: isLangMenuOpen ? 180 : 0 }}>
                   <FaIcons.FaChevronDown className="w-4 h-4" />
                 </motion.div>
@@ -197,14 +197,14 @@ function App() {
                     className="absolute top-full right-0 mt-2 w-32 bg-card border border-border rounded-md shadow-lg overflow-hidden z-50"
                   >
                     <button
-                      onClick={() => { setLang('en'); setIsLangMenuOpen(false) }}
-                      className={`w-full text-left px-4 py-2 text-sm hover:bg-muted transition-colors ${lang === 'en' ? 'text-primary bg-muted/50' : ''}`}
+                      onClick={() => { setLang("en"); setIsLangMenuOpen(false) }}
+                      className={`w-full text-left px-4 py-2 text-sm hover:bg-muted transition-colors ${lang === "en" ? "text-primary bg-muted/50" : ""}`}
                     >
                       English
                     </button>
                     <button
-                      onClick={() => { setLang('pt'); setIsLangMenuOpen(false) }}
-                      className={`w-full text-left px-4 py-2 text-sm hover:bg-muted transition-colors ${lang === 'pt' ? 'text-primary bg-muted/50' : ''}`}
+                      onClick={() => { setLang("pt"); setIsLangMenuOpen(false) }}
+                      className={`w-full text-left px-4 py-2 text-sm hover:bg-muted transition-colors ${lang === "pt" ? "text-primary bg-muted/50" : ""}`}
                     >
                       Portuguese
                     </button>
@@ -215,7 +215,7 @@ function App() {
           </div>
 
           <div className="md:hidden flex items-center gap-2">
-            <Button variant="ghost" size="sm" onClick={() => setLang(lang === 'en' ? 'pt' : 'en')}>
+            <Button variant="ghost" size="sm" onClick={() => setLang(lang === "en" ? "pt" : "en")}>
               {lang.toUpperCase()}
             </Button>
             <Button variant="ghost" size="icon" onClick={() => setIsMenuOpen(!isMenuOpen)}>
@@ -228,7 +228,7 @@ function App() {
           {isMenuOpen && (
             <motion.div
               initial={{ height: 0, opacity: 0 }}
-              animate={{ height: 'auto', opacity: 1 }}
+              animate={{ height: "auto", opacity: 1 }}
               exit={{ height: 0, opacity: 0 }}
               className="md:hidden bg-background border-b border-border overflow-hidden"
             >
@@ -237,7 +237,7 @@ function App() {
                   <button
                     key={key}
                     onClick={() => scrollTo(key)}
-                    className={`text-left text-lg font-medium transition-colors hover:text-primary ${activeSection === key ? 'text-primary' : 'text-muted-foreground'
+                    className={`text-left text-lg font-medium transition-colors hover:text-primary ${activeSection === key ? "text-primary" : "text-muted-foreground"
                       }`}
                   >
                     {data.nav[key]}
@@ -301,12 +301,12 @@ function App() {
             className="flex flex-col sm:flex-row gap-4 justify-center"
           >
             <motion.div className="rounded-lg" whileHover={magicalHover} whileTap={tapEffect}>
-              <Button size="lg" onClick={() => scrollTo('projects')} className="bg-primary hover:bg-primary/90 shadow-lg shadow-primary/20 w-full">
+              <Button size="lg" onClick={() => scrollTo("projects")} className="bg-primary hover:bg-primary/90 shadow-lg shadow-primary/20 w-full">
                 {data.hero.cta_primary}
               </Button>
             </motion.div>
             <motion.div className="rounded-lg" whileHover={magicalHover} whileTap={tapEffect}>
-              <Button size="lg" variant="outline" onClick={() => scrollTo('contact')} className="bg-background/50 backdrop-blur-md w-full">
+              <Button size="lg" variant="outline" onClick={() => scrollTo("contact")} className="bg-background/50 backdrop-blur-md w-full">
                 {data.hero.cta_secondary}
               </Button>
             </motion.div>
@@ -352,7 +352,7 @@ function App() {
                     {/* --- EDUCATION */}
                     <div>
                       <h4 className="text-xs font-bold uppercase tracking-widest text-primary mb-4 flex items-center gap-2">
-                        {lang === 'pt' ? 'Formação' : 'Education'}
+                        {lang === "pt" ? "Formação" : "Education"}
                       </h4>
 
                       <div className="space-y-4">
@@ -398,7 +398,7 @@ function App() {
                     {/* --- LANGUAGES --- */}
                     <div>
                       <h4 className="text-xs font-bold uppercase tracking-widest text-primary mb-4 flex items-center gap-2">
-                        {lang === 'pt' ? 'Idiomas' : 'Languages'}
+                        {lang === "pt" ? "Idiomas" : "Languages"}
                       </h4>
                       <div className="space-y-4">
                         {data.about.languages.list.map((langItem) => (
@@ -446,17 +446,17 @@ function App() {
                 </motion.div>
 
                 <motion.div className="rounded-lg" whileHover={magicalHover} whileTap={tapEffect}>
-                  <Button variant="outline" size="lg" className="gap-2 h-12 px-6" asChild>
+                  <Button variant="outline" size="lg" className="gap-2 h-12 px-6 bg-blue-600 hover:bg-blue-600" asChild>
                     <a href="https://linkedin.com/in/vprezende" target="_blank">
                       <FaIcons.FaLinkedin size={20} /> LinkedIn
                     </a>
                   </Button>
                 </motion.div>
 
-                <motion.div className="rounded-lg" whileHover={legendaryHover} whileTap={tapEffect}>
+                <motion.div className="rounded-lg" whileHover={magicalHover} whileTap={tapEffect}>
                   <Button
                     size="lg"
-                    className="gap-2 h-12 px-6 bg-yellow-500/10 text-yellow-600 border border-yellow-500/20 hover:bg-yellow-500 hover:text-white transition-all duration-300"
+                    className="gap-2 h-12 px-6 bg-yellow-500 text-white hover:bg-yellow-500 hover:text-white transition-none"
                     asChild
                   >
                     <a href="https://www.buymeacoffee.com/vprezende" target="_blank">
@@ -505,13 +505,13 @@ function App() {
                     onClick={() => handleSkillClick(skill.name)}
                     whileHover={{ x: 5, scale: 1.02, backgroundColor: "rgba(4, 170, 255, 0.1)" }}
                     className={`flex items-center justify-between p-3 bg-background rounded-lg border cursor-pointer transition-all duration-300 ${selectedSkill === skill.name
-                      ? 'border-primary shadow-[0_0_15px_rgba(59,130,246,0.5)] bg-primary/10'
-                      : 'border-border'
+                      ? "border-primary shadow-[0_0_15px_rgba(59,130,246,0.5)] bg-primary/10"
+                      : "border-border"
                       }`}
                   >
                     <span>{skill.name}</span>
                     <div className="flex gap-1">
-                      {[1, 2, 3, 4, 5].map(s => <div key={s} className={`w-1.5 h-1.5 rounded-full ${s <= skill.level ? 'bg-primary' : 'bg-muted'}`} />)}
+                      {[1, 2, 3, 4, 5].map(s => <div key={s} className={`w-1.5 h-1.5 rounded-full ${s <= skill.level ? "bg-primary" : "bg-muted"}`} />)}
                     </div>
                   </motion.div>
                 ))}
@@ -530,13 +530,13 @@ function App() {
                     onClick={() => handleSkillClick(skill.name)}
                     whileHover={{ x: 5, scale: 1.02, backgroundColor: "rgba(34, 197, 94, 0.1)" }}
                     className={`flex items-center justify-between p-3 bg-background rounded-lg border cursor-pointer transition-all duration-300 ${selectedSkill === skill.name
-                      ? 'border-green-500 shadow-[0_0_15px_rgba(34,197,94,0.5)] bg-green-500/10'
-                      : 'border-border'
+                      ? "border-green-500 shadow-[0_0_15px_rgba(34,197,94,0.5)] bg-green-500/10"
+                      : "border-border"
                       }`}
                   >
                     <span>{skill.name}</span>
                     <div className="flex gap-1">
-                      {[1, 2, 3, 4, 5].map(s => <div key={s} className={`w-1.5 h-1.5 rounded-full ${s <= skill.level ? 'bg-green-500' : 'bg-muted'}`} />)}
+                      {[1, 2, 3, 4, 5].map(s => <div key={s} className={`w-1.5 h-1.5 rounded-full ${s <= skill.level ? "bg-green-500" : "bg-muted"}`} />)}
                     </div>
                   </motion.div>
                 ))}
@@ -555,13 +555,13 @@ function App() {
                     onClick={() => handleSkillClick(skill.name)}
                     whileHover={{ x: 5, scale: 1.02, backgroundColor: "rgba(168, 85, 247, 0.1)" }}
                     className={`flex items-center justify-between p-3 bg-background rounded-lg border cursor-pointer transition-all duration-300 ${selectedSkill === skill.name
-                      ? 'border-purple-500 shadow-[0_0_15px_rgba(168,85,247,0.5)] bg-purple-500/10'
-                      : 'border-border'
+                      ? "border-purple-500 shadow-[0_0_15px_rgba(168,85,247,0.5)] bg-purple-500/10"
+                      : "border-border"
                       }`}
                   >
                     <span>{skill.name}</span>
                     <div className="flex gap-1">
-                      {[1, 2, 3, 4, 5].map(s => <div key={s} className={`w-1.5 h-1.5 rounded-full ${s <= skill.level ? 'bg-purple-500' : 'bg-muted'}`} />)}
+                      {[1, 2, 3, 4, 5].map(s => <div key={s} className={`w-1.5 h-1.5 rounded-full ${s <= skill.level ? "bg-purple-500" : "bg-muted"}`} />)}
                     </div>
                   </motion.div>
                 ))}
@@ -648,7 +648,7 @@ function App() {
             className="flex flex-wrap justify-center gap-6"
           >
             {projectsData.map((project) => {
-              const Icon = FaIcons[project.icon];
+              const statusData = data.projects.status[project.status];
               return (
                 <motion.div
                   key={project.id}
@@ -660,10 +660,10 @@ function App() {
                     <CardHeader>
                       <div className="flex justify-between items-start mb-2">
                         <div className="p-2 bg-muted rounded-md transition-colors">
-                          {Icon && <Icon className="w-10 h-10 text-primary" />}
+                          {<FaIcons.FaTerminal className="w-10 h-10 text-primary" />}
                         </div>
-                        <Badge variant="outline">
-                          {data.projects.status[project.status]}
+                        <Badge variant="outline" className={statusData.className}>
+                          {statusData.label}
                         </Badge>
                       </div>
                       <CardTitle className="transition-colors">
@@ -672,7 +672,7 @@ function App() {
                     </CardHeader>
                     <CardContent className="flex-1 flex flex-col">
                       <CardDescription className="mb-4 min-h-[80px]">
-                        {lang === 'pt' ? project.descPT : project.descEN}
+                        {lang === "pt" ? project.descPT : project.descEN}
                       </CardDescription>
                       <div className="flex flex-wrap gap-2 mb-4 mt-auto">
                         {project.tags.map(tag => (
@@ -681,16 +681,45 @@ function App() {
                           </Badge>
                         ))}
                       </div>
-                      {project.link && (
-                        <motion.div className="rounded-md" whileHover={{ scale: 1.02 }} whileTap={tapEffect}>
-                          <Button variant="ghost" size="sm" className="w-full mt-4 bg-muted/50 text-muted-foreground hover:bg-primary hover:text-white transition-colors" asChild>
-                            <a href={project.link} target="_blank">
-                              <FaIcons.FaExternalLinkAlt size={16} className="mr-2" />
-                              View Code
-                            </a>
-                          </Button>
-                        </motion.div>
-                      )}
+                      <div className="flex justify-center gap-3 mt-4">
+                        {project.code && (
+                          <motion.div
+                            className="rounded-md"
+                            whileHover={magicalHover}
+                            whileTap={tapEffect}
+                          >
+                            <Button
+                              size="sm"
+                              className="bg-zinc-800 text-zinc-100 hover:bg-zinc-800 transition-none"
+                              asChild
+                            >
+                              <a href={project.code} target="_blank">
+                                <FaIcons.FaCode size={16} className="mr-2" />
+                                Code
+                              </a>
+                            </Button>
+                          </motion.div>
+                        )}
+
+                        {project.design && (
+                          <motion.div
+                            className="rounded-md"
+                            whileHover={magicalHover}
+                            whileTap={tapEffect}
+                          >
+                            <Button
+                              size="sm"
+                              className="bg-purple-600 text-white hover:bg-purple-600 transition-none"
+                              asChild
+                            >
+                              <a href={project.design} target="_blank">
+                                <FaIcons.FaFigma size={16} className="mr-2" />
+                                Design
+                              </a>
+                            </Button>
+                          </motion.div>
+                        )}
+                      </div>
                     </CardContent>
                   </Card>
                 </motion.div>
@@ -736,7 +765,7 @@ function App() {
               asChild
             >
               <a href="https://formsubmit.co/el/sariva" target="_blank" rel="noopener noreferrer">
-                {lang === 'pt' ? 'Enviar Mensagem' : 'Send Message'}
+                {lang === "pt" ? "Enviar Mensagem" : "Send Message"}
               </a>
             </Button>
           </motion.div>
@@ -767,7 +796,7 @@ function App() {
             initial={{ opacity: 0, scale: 0 }}
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0 }}
-            onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+            onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
             className="fixed bottom-8 right-8 p-3 bg-primary text-primary-foreground rounded-full shadow-lg z-50 hover:shadow-blue-500/50"
             whileHover={magicalHover}
             whileTap={tapEffect}
