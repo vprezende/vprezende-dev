@@ -182,7 +182,7 @@ function App() {
                 className="hover:bg-muted gap-2"
               >
                 <FaIcons.FaGlobe className="w-4 h-4" />
-                <span>{lang === 'en' ? 'English' : 'Português'}</span>
+                <span>{lang === 'en' ? 'English' : 'Portuguese'}</span>
                 <motion.div animate={{ rotate: isLangMenuOpen ? 180 : 0 }}>
                   <FaIcons.FaChevronDown className="w-4 h-4" />
                 </motion.div>
@@ -206,7 +206,7 @@ function App() {
                       onClick={() => { setLang('pt'); setIsLangMenuOpen(false) }}
                       className={`w-full text-left px-4 py-2 text-sm hover:bg-muted transition-colors ${lang === 'pt' ? 'text-primary bg-muted/50' : ''}`}
                     >
-                      Português
+                      Portuguese
                     </button>
                   </motion.div>
                 )}
@@ -501,17 +501,17 @@ function App() {
               <div className="space-y-2">
                 {skillsData.mobile.map(skill => (
                   <motion.div
-                    key={skill}
-                    onClick={() => handleSkillClick(skill)}
+                    key={skill.name}
+                    onClick={() => handleSkillClick(skill.name)}
                     whileHover={{ x: 5, scale: 1.02, backgroundColor: "rgba(4, 170, 255, 0.1)" }}
-                    className={`flex items-center justify-between p-3 bg-background rounded-lg border cursor-pointer transition-all duration-300 ${selectedSkill === skill
+                    className={`flex items-center justify-between p-3 bg-background rounded-lg border cursor-pointer transition-all duration-300 ${selectedSkill === skill.name
                       ? 'border-primary shadow-[0_0_15px_rgba(59,130,246,0.5)] bg-primary/10'
                       : 'border-border'
                       }`}
                   >
-                    <span>{skill}</span>
+                    <span>{skill.name}</span>
                     <div className="flex gap-1">
-                      {[1, 2, 3, 4, 5].map(s => <div key={s} className={`w-1.5 h-1.5 rounded-full ${s <= 4 ? 'bg-primary' : 'bg-muted'}`} />)}
+                      {[1, 2, 3, 4, 5].map(s => <div key={s} className={`w-1.5 h-1.5 rounded-full ${s <= skill.level ? 'bg-primary' : 'bg-muted'}`} />)}
                     </div>
                   </motion.div>
                 ))}
@@ -526,17 +526,17 @@ function App() {
               <div className="space-y-2">
                 {skillsData.backend.map(skill => (
                   <motion.div
-                    key={skill}
-                    onClick={() => handleSkillClick(skill)}
+                    key={skill.name}
+                    onClick={() => handleSkillClick(skill.name)}
                     whileHover={{ x: 5, scale: 1.02, backgroundColor: "rgba(34, 197, 94, 0.1)" }}
-                    className={`flex items-center justify-between p-3 bg-background rounded-lg border cursor-pointer transition-all duration-300 ${selectedSkill === skill
+                    className={`flex items-center justify-between p-3 bg-background rounded-lg border cursor-pointer transition-all duration-300 ${selectedSkill === skill.name
                       ? 'border-green-500 shadow-[0_0_15px_rgba(34,197,94,0.5)] bg-green-500/10'
                       : 'border-border'
                       }`}
                   >
-                    <span>{skill}</span>
+                    <span>{skill.name}</span>
                     <div className="flex gap-1">
-                      {[1, 2, 3, 4, 5].map(s => <div key={s} className={`w-1.5 h-1.5 rounded-full ${s <= 4 ? 'bg-green-500' : 'bg-muted'}`} />)}
+                      {[1, 2, 3, 4, 5].map(s => <div key={s} className={`w-1.5 h-1.5 rounded-full ${s <= skill.level ? 'bg-green-500' : 'bg-muted'}`} />)}
                     </div>
                   </motion.div>
                 ))}
@@ -551,17 +551,17 @@ function App() {
               <div className="space-y-2">
                 {skillsData.tools.map(skill => (
                   <motion.div
-                    key={skill}
-                    onClick={() => handleSkillClick(skill)}
+                    key={skill.name}
+                    onClick={() => handleSkillClick(skill.name)}
                     whileHover={{ x: 5, scale: 1.02, backgroundColor: "rgba(168, 85, 247, 0.1)" }}
-                    className={`flex items-center justify-between p-3 bg-background rounded-lg border cursor-pointer transition-all duration-300 ${selectedSkill === skill
+                    className={`flex items-center justify-between p-3 bg-background rounded-lg border cursor-pointer transition-all duration-300 ${selectedSkill === skill.name
                       ? 'border-purple-500 shadow-[0_0_15px_rgba(168,85,247,0.5)] bg-purple-500/10'
                       : 'border-border'
                       }`}
                   >
-                    <span>{skill}</span>
+                    <span>{skill.name}</span>
                     <div className="flex gap-1">
-                      {[1, 2, 3, 4, 5].map(s => <div key={s} className={`w-1.5 h-1.5 rounded-full ${s <= 4 ? 'bg-purple-500' : 'bg-muted'}`} />)}
+                      {[1, 2, 3, 4, 5].map(s => <div key={s} className={`w-1.5 h-1.5 rounded-full ${s <= skill.level ? 'bg-purple-500' : 'bg-muted'}`} />)}
                     </div>
                   </motion.div>
                 ))}

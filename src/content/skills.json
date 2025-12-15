@@ -1,21 +1,21 @@
 {
   "mobile": [
-    "Flutter", 
-    "Dart", 
-    "Firebase", 
-    "Mobile Architecture"
+    { "name": "Flutter", "level": 4 },
+    { "name": "Dart", "level": 4 },
+    { "name": "Firebase", "level": 3 },
+    { "name": "Mobile Architecture", "level": 3 }
   ],
   "backend": [
-    "PostgreSQL", 
-    "SQLite", 
-    "MongoDB", 
-    "Prisma"
+    { "name": "PostgreSQL", "level": 4 },
+    { "name": "SQLite", "level": 3 },
+    { "name": "MongoDB", "level": 3 },
+    { "name": "Prisma", "level": 4 }
   ],
   "tools": [
-    "Docker", 
-    "Linux", 
-    "Figma", 
-    "Insomnia", 
-    "Git/GitHub"
+    { "name": "Docker", "level": 4 },
+    { "name": "Linux", "level": 3 },
+    { "name": "Figma", "level": 3 },
+    { "name": "Insomnia", "level": 4 },
+    { "name": "Git/GitHub", "level": 5 }
   ]
 }
