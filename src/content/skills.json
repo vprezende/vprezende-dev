@@ -1,0 +1,21 @@
+{
+  "mobile": [
+    "Flutter", 
+    "Dart", 
+    "Firebase", 
+    "Mobile Architecture"
+  ],
+  "backend": [
+    "PostgreSQL", 
+    "SQLite", 
+    "MongoDB", 
+    "Prisma"
+  ],
+  "tools": [
+    "Docker", 
+    "Linux", 
+    "Figma", 
+    "Insomnia", 
+    "Git/GitHub"
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "title": "Experiência",
+  "subtitle": "Trajetória acadêmica e de mercado",
+  "list": [
+    {
+      "id": 1,
+      "role": "Pesquisador de Inovação Tecnológica (Flutter)",
+      "company": "IFF - Instituto Federal Fluminense",
+      "period": "Mar 2025 - Presente",
+      "desc": "Engenheiro de Software Principal e único desenvolvedor (Flutter/Dart). Gerencio todo o ciclo de vida do projeto – do design UI/UX à implementação. O projeto foca na otimização do uso sustentável da terra em sistemas ILPF."
+    },
+    {
+      "id": 2,
+      "role": "Software Engineer / Freelancer",
+      "company": "Autônomo",
+      "period": "Atualmente",
+      "desc": "Desenvolvimento de soluções mobile com Flutter e automações para clientes, focando em arquitetura limpa, performance e entregas ágeis."
+    }
+  ]
+}

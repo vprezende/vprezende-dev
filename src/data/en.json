@@ -1,0 +1,68 @@
+{
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "skills": "Skills",
+    "experience": "Experience",
+    "projects": "Projects",
+    "contact": "Contact"
+  },
+  "hero": {
+    "name": "Vinícius Rezende",
+    "role": "Software Engineer | Flutter | Dart | REST APIs | Clean Architecture",
+    "subtitle": "Delivering high-quality software solutions with a focus on mobile and innovation.",
+    "cta_primary": "View Projects",
+    "cta_secondary": "Get in Touch"
+  },
+  "about": {
+    "title": "About Me",
+    "description": "Computer Engineering Student & Flutter Developer.",
+    "bio": "I’m a Software Engineer in training, working with Flutter to deliver high-quality software solutions. My focus is on creating high-performance mobile apps, merging functional design with solid architecture (Clean Architecture).",
+    "education": {
+      "title": "Education",
+      "list": [
+        {
+          "institution": "IFF - Instituto Federal Fluminense",
+          "degree": "Computer Engineering",
+          "period": "2022 - Present",
+          "status": "Ongoing"
+        }
+      ]
+    },
+    "languages": {
+      "title": "Languages",
+      "list": [
+        { "name": "Portuguese", "level": "Native", "progress": 100 },
+        { "name": "English", "level": "B1", "progress": 60 }
+      ]
+    },
+    "stats": {
+      "location": "Bom Jesus do Itabapoana, RJ, Brazil"
+    }
+  },
+  "projects": {
+    "title": "Projects",
+    "subtitle": "Real solutions developed recently",
+    "status": { "dev": "In Development", "done": "Completed", "public": "Open Source" }
+  },
+  "skills": {
+    "title": "Skills",
+    "subtitle": "Technologies & Tools I master",
+    "list": {
+      "mobile": ["Flutter", "Dart", "Firebase", "Mobile Architecture"],
+      "backend": ["PostgreSQL", "SQLite", "MongoDB", "Prisma"],
+      "tools": ["Docker", "Linux", "Figma", "Insomnia", "Git/GitHub"]
+    }
+  },
+  "contact": {
+    "title": "Let's Talk?",
+    "subtitle": "Available for new projects and challenges.",
+    "form": {
+      "name": "Your Name",
+      "email": "Your Email",
+      "subject": "Subject",
+      "msg": "Message",
+      "btn": "Send Message"
+    }
+  }
+}
