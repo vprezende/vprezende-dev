@@ -8,7 +8,6 @@ export default function AnalyticsLoader() {
     let mounted = true
 
     if (mounted) {
-      // Aqui você sabe exatamente qual módulo existe
       const Comp = VercelAnalytics?.Analytics || VercelAnalytics?.default
       if (Comp) setAnalyticsComponent(() => Comp)
     }

@@ -22,8 +22,6 @@ import experienceDataEN from '@/content/experience/en.json';
 
 const email = import.meta.env.VITE_CONTACT_EMAIL
 
-// --- ANIMAÇÕES RPG FANTASY ---
-
 const magicalHover = {
   scale: 1.05,
   y: -5,
@@ -374,7 +372,7 @@ function App() {
             viewport={viewportConfig}
             className="grid md:grid-cols-2 gap-12 lg:gap-20 items-start"
           >
-            {/* --- COLUNA ESQUERDA: CARD DE PERFIL --- */}
+            {/* --- PERFIL CARD --- */}
             <motion.div variants={itemVariants} className="relative group">
 
               <div className="absolute -inset-0.5 bg-blue-500 rounded-2xl blur opacity-60"></div>
@@ -382,7 +380,6 @@ function App() {
               <Card className="relative border-border/50 overflow-hidden rounded-2xl">
                 <CardContent className="p-8">
 
-                  {/* Header: Foto e Local */}
                   <div className="flex flex-col items-center text-center mb-8">
                     <motion.div
                       whileHover={{ scale: 1.1, rotate: 360 }}
@@ -400,7 +397,7 @@ function App() {
 
                   <div className="space-y-8">
 
-                    {/* --- EDUCATION (NOVO DESIGN MELHORADO) --- */}
+                    {/* --- EDUCATION */}
                     <div>
                       <h4 className="text-xs font-bold uppercase tracking-widest text-primary mb-4 flex items-center gap-2">
                         {lang === 'pt' ? 'Formação' : 'Education'}
@@ -415,7 +412,6 @@ function App() {
                           >
 
                             <div className="flex items-start gap-4">
-                              {/* Ícone de Destaque */}
                               <div className="p-3 bg-blue-500/10 rounded-lg text-blue-500 shrink-0">
                                 <FaIcons.FaGraduationCap size={24} />
                               </div>
@@ -431,15 +427,12 @@ function App() {
                               </div>
                             </div>
 
-                            {/* Badges de Status e Período */}
                             <div className="mt-4 flex flex-wrap gap-2 pl-[3.25rem]">
-                              {/* Badge de Status */}
                               <Badge variant="outline" className="bg-yellow-500/10 text-yellow-600 border-yellow-500/20 hover:bg-yellow-500/20">
                                 <span className="w-1.5 h-1.5 rounded-full bg-yellow-500 mr-2 animate-pulse"></span>
                                 {edu.status}
                               </Badge>
 
-                              {/* Badge de Período (O que você pediu) */}
                               <Badge variant="secondary" className="bg-primary/10 text-primary hover:bg-primary/20 gap-1.5">
                                 <FaIcons.FaClock size={10} />
                                 {edu.period}
@@ -450,7 +443,7 @@ function App() {
                       </div>
                     </div>
 
-                    {/* --- IDIOMAS --- */}
+                    {/* --- LANGUAGES --- */}
                     <div>
                       <h4 className="text-xs font-bold uppercase tracking-widest text-primary mb-4 flex items-center gap-2">
                         {lang === 'pt' ? 'Idiomas' : 'Languages'}
@@ -480,7 +473,7 @@ function App() {
               </Card>
             </motion.div>
 
-            {/* --- COLUNA DIREITA (BIO) --- */}
+            {/* --- RIGHT COLUMN: BIOGRAPHY --- */}
             <motion.div variants={itemVariants} className="flex flex-col justify-center h-full space-y-8">
               <div>
                 <h2 className="text-3xl md:text-4xl font-bold mb-6 flex items-center gap-3">
@@ -525,7 +518,7 @@ function App() {
           </motion.div>
         </div>
       </section>
-      {/* --- SKILLS (COM HIGHLIGHT) --- */}
+      {/* --- SKILLS --- */}
       <section id="skills" className="py-20 px-4">
         <div className="max-w-5xl mx-auto">
           <motion.div
@@ -626,7 +619,7 @@ function App() {
         </div>
       </section>
 
-      {/* --- EXPERIENCE (NOVA SEÇÃO) --- */}
+      {/* --- EXPERIENCE --- */}
       <section id="experience" className="py-20 px-4 bg-muted/20">
         <div className="max-w-4xl mx-auto">
           <motion.div
@@ -766,7 +759,7 @@ function App() {
       >
         <div className="max-w-3xl mx-auto text-center">
 
-          {/* TÍTULO */}
+          {/* TITLE */}
           <motion.h2
             variants={itemVariants}
             className="text-3xl font-bold mb-4"
@@ -774,7 +767,7 @@ function App() {
             {data.contact.title}
           </motion.h2>
 
-          {/* SUBTÍTULO */}
+          {/* SUBTITLE */}
           <motion.p
             variants={itemVariants}
             className="text-muted-foreground mb-10"
@@ -794,7 +787,7 @@ function App() {
                   variants={containerVariants}
                 >
 
-                  {/* NOME + EMAIL */}
+                  {/* NAME + EMAIL */}
                   <motion.div
                     variants={itemVariants}
                     className="grid grid-cols-1 md:grid-cols-2 gap-4"
@@ -831,7 +824,7 @@ function App() {
                     </div>
                   </motion.div>
 
-                  {/* ASSUNTO */}
+                  {/* SUBJECT */}
                   <motion.div variants={itemVariants} className="space-y-2">
                     <label className="text-sm font-medium">
                       {data.contact.form.subject}
@@ -847,7 +840,7 @@ function App() {
                     />
                   </motion.div>
 
-                  {/* MENSAGEM */}
+                  {/* MESSAGE */}
                   <motion.div variants={itemVariants} className="space-y-2">
                     <label className="text-sm font-medium">
                       {data.contact.form.msg}
@@ -863,7 +856,7 @@ function App() {
                     />
                   </motion.div>
 
-                  {/* BOTÃO */}
+                  {/* BUTTON */}
                   <motion.div
                     variants={itemVariants}
                     whileHover={magicalHover}
@@ -898,7 +891,7 @@ function App() {
 
                 </motion.form>
 
-                {/* INFO EXTRA */}
+                {/* EXTRA INFORMATION */}
                 <motion.div
                   variants={itemVariants}
                   className="mt-10 flex flex-col md:flex-row justify-center items-center gap-6 text-muted-foreground"
