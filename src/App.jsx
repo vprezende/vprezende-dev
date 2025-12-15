@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef, useMemo } from "react"
-import { AnimatePresence } from "framer-motion"
+import { AnimatePresence, motion } from "framer-motion"
 import { Button } from "@/components/ui/button.jsx"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card.jsx"
 import { Badge } from "@/components/ui/badge.jsx"
@@ -423,7 +423,7 @@ function App() {
               <div className="flex flex-wrap gap-4">
                 <motion.div className="rounded-lg" whileHover={magicalHover} whileTap={tapEffect}>
                   <Button variant="outline" size="lg" className="gap-2 h-12 px-6" asChild>
-                    <a href="https://github.com/vprezende" target="_blank">
+                    <a href="https://github.com/vprezende" target="_blank" rel="noreferrer">
                       <FaIcons.FaGithub size={20} /> GitHub
                     </a>
                   </Button>
@@ -431,7 +431,7 @@ function App() {
 
                 <motion.div className="rounded-lg" whileHover={magicalHover} whileTap={tapEffect}>
                   <Button variant="outline" size="lg" className="gap-2 h-12 px-6 bg-blue-600 hover:bg-blue-600" asChild>
-                    <a href="https://linkedin.com/in/vprezende" target="_blank">
+                    <a href="https://linkedin.com/in/vprezende" target="_blank" rel="noreferrer">
                       <FaIcons.FaLinkedin size={20} /> LinkedIn
                     </a>
                   </Button>
@@ -443,7 +443,7 @@ function App() {
                     className="gap-2 h-12 px-6 bg-yellow-500 text-white hover:bg-yellow-500 hover:text-white transition-none"
                     asChild
                   >
-                    <a href="https://www.buymeacoffee.com/vprezende" target="_blank">
+                    <a href="https://www.buymeacoffee.com/vprezende" target="_blank" rel="noreferrer">
                       <FaIcons.FaCoffee size={20} /> Buy me a coffee
                     </a>
                   </Button>
@@ -665,7 +665,7 @@ function App() {
                               className="bg-zinc-800 text-zinc-100 hover:bg-zinc-800 transition-none"
                               asChild
                             >
-                              <a href={project.code} target="_blank">
+                              <a href={project.code} target="_blank" rel="noreferrer">
                                 <FaIcons.FaCode size={16} className="mr-2" />
                                 Code
                               </a>
@@ -684,7 +684,7 @@ function App() {
                               className="bg-purple-600 text-white hover:bg-purple-600 transition-none"
                               asChild
                             >
-                              <a href={project.design} target="_blank">
+                              <a href={project.design} target="_blank" rel="noreferrer">
                                 <FaIcons.FaFigma size={16} className="mr-2" />
                                 Design
                               </a>
