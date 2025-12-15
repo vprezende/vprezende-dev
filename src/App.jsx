@@ -20,7 +20,7 @@ import skillsData from '@/content/skills.json';
 import experienceDataPT from '@/content/experience/pt.json';
 import experienceDataEN from '@/content/experience/en.json';
 
-const email = import.meta.env.VITE_CONTACT_EMAIL
+const email = process.env.VITE_CONTACT_EMAIL
 
 const magicalHover = {
   scale: 1.05,
