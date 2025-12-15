@@ -5,7 +5,6 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Badge } from '@/components/ui/badge.jsx'
 import { Input } from '@/components/ui/input.jsx'
 import { Textarea } from '@/components/ui/textarea.jsx'
-import { toast, Toaster } from "sonner"
 
 import * as FaIcons from "react-icons/fa";
 
@@ -19,8 +18,6 @@ import skillsData from '@/content/skills.json';
 
 import experienceDataPT from '@/content/experience/pt.json';
 import experienceDataEN from '@/content/experience/en.json';
-
-const email = process.env.VITE_CONTACT_EMAIL
 
 const magicalHover = {
   scale: 1.05,
@@ -97,14 +94,6 @@ function App() {
   const [showScrollTop, setShowScrollTop] = useState(false)
   const [selectedSkill, setSelectedSkill] = useState(null)
 
-  const [isSubmitting, setIsSubmitting] = useState(false)
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    subject: '',
-    message: ''
-  })
-
   const data = lang === 'pt' ? dataPT : dataEn;
   const experienceData = lang == "pt" ? experienceDataPT : experienceDataEN;
 
@@ -139,40 +128,6 @@ function App() {
     document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })
   }
 
-  const handleContact = async (e) => {
-    e.preventDefault()
-    setIsSubmitting(true)
-    const loadingToast = toast.loading(lang === 'pt' ? 'Enviando mensagem...' : 'Sending message...')
-
-    try {
-      const formDataToSend = new FormData()
-      formDataToSend.append('name', formData.name)
-      formDataToSend.append('email', formData.email)
-      formDataToSend.append('subject', formData.subject)
-      formDataToSend.append('message', formData.message)
-      formDataToSend.append('_captcha', 'false')
-
-      const response = await fetch(`https://formsubmit.co/ajax/${email}`, {
-        method: 'POST',
-        body: formDataToSend,
-        headers: { 'Accept': 'application/json' }
-      })
-
-      if (response.ok) {
-        toast.dismiss(loadingToast)
-        toast.success(lang === 'pt' ? 'Mensagem enviada com sucesso!' : 'Message sent successfully!')
-        setFormData({ name: '', email: '', subject: '', message: '' })
-      } else {
-        throw new Error(lang == 'pt' ? 'Erro ao enviar' : 'Error sending')
-      }
-    } catch (error) {
-      toast.dismiss(loadingToast)
-      toast.error(lang === 'pt' ? 'Erro ao enviar. Tente novamente.' : 'Error sending. Please try again.')
-    } finally {
-      setIsSubmitting(false)
-    }
-  }
-
   const handleSkillClick = (skill) => {
     if (selectedSkill === skill) {
       setSelectedSkill(null)
@@ -190,7 +145,6 @@ function App() {
 
   return (
     <div className="min-h-screen bg-background text-foreground relative selection:bg-primary selection:text-primary-foreground font-sans">
-      <Toaster position="bottom-right" richColors />
       <CustomCursor />
       <ParticleBackground />
 
@@ -775,147 +729,38 @@ function App() {
             {data.contact.subtitle}
           </motion.p>
 
-          {/* CARD */}
-          <motion.div variants={itemVariants}>
-            <Card className="bg-card/50 backdrop-blur-md border-primary/20 shadow-2xl">
-              <CardContent className="pt-6">
+          {/* BUTTON */}
+          <motion.div variants={itemVariants} whileHover={magicalHover} whileTap={tapEffect} className="my-6 max-w-md mx-auto rounded-lg">
+            <Button
+              size="sm"
+              className="w-full h-11 bg-primary text-primary-foreground
+          hover:bg-primary/90 shadow-lg shadow-primary/30 transition-all gap-2"
+              asChild
+            >
+              <a href="https://formsubmit.co/el/sariva" target="_blank" rel="noopener noreferrer">
+                {lang === 'pt' ? 'Enviar Mensagem' : 'Send Message'}
+              </a>
+            </Button>
+          </motion.div>
 
-                {/* FORM */}
-                <motion.form
-                  onSubmit={handleContact}
-                  className="space-y-4 text-left"
-                  variants={containerVariants}
-                >
+          {/* EXTRA INFORMATION */}
+          <motion.div
+            variants={itemVariants}
+            className="mt-10 flex flex-col md:flex-row justify-center items-center gap-6 text-muted-foreground"
+          >
+            <span className="flex items-center gap-2">
+              <FaIcons.FaEnvelope size={16} />
+              vprezende.work@gmail.com
+            </span>
 
-                  {/* NAME + EMAIL */}
-                  <motion.div
-                    variants={itemVariants}
-                    className="grid grid-cols-1 md:grid-cols-2 gap-4"
-                  >
-                    <div className="space-y-2">
-                      <label className="text-sm font-medium">
-                        {data.contact.form.name}
-                      </label>
-                      <Input
-                        placeholder="John Doe"
-                        required
-                        value={formData.name}
-                        onChange={(e) =>
-                          setFormData({ ...formData, name: e.target.value })
-                        }
-                        className="focus:ring-2 focus:ring-primary/50 transition-all"
-                      />
-                    </div>
-
-                    <div className="space-y-2">
-                      <label className="text-sm font-medium">
-                        {data.contact.form.email}
-                      </label>
-                      <Input
-                        type="email"
-                        placeholder="john@example.com"
-                        required
-                        value={formData.email}
-                        onChange={(e) =>
-                          setFormData({ ...formData, email: e.target.value })
-                        }
-                        className="focus:ring-2 focus:ring-primary/50 transition-all"
-                      />
-                    </div>
-                  </motion.div>
-
-                  {/* SUBJECT */}
-                  <motion.div variants={itemVariants} className="space-y-2">
-                    <label className="text-sm font-medium">
-                      {data.contact.form.subject}
-                    </label>
-                    <Input
-                      placeholder={data.contact.form.subject}
-                      required
-                      value={formData.subject}
-                      onChange={(e) =>
-                        setFormData({ ...formData, subject: e.target.value })
-                      }
-                      className="focus:ring-2 focus:ring-primary/50 transition-all"
-                    />
-                  </motion.div>
-
-                  {/* MESSAGE */}
-                  <motion.div variants={itemVariants} className="space-y-2">
-                    <label className="text-sm font-medium">
-                      {data.contact.form.msg}
-                    </label>
-                    <Textarea
-                      rows={5}
-                      required
-                      value={formData.message}
-                      onChange={(e) =>
-                        setFormData({ ...formData, message: e.target.value })
-                      }
-                      className="resize-none focus:ring-2 focus:ring-primary/50 transition-all"
-                    />
-                  </motion.div>
-
-                  {/* BUTTON */}
-                  <motion.div
-                    variants={itemVariants}
-                    whileHover={magicalHover}
-                    whileTap={tapEffect}
-                    className="my-6 max-w-md mx-auto rounded-lg"
-                  >
-                    <Button
-                      type="submit"
-                      size="sm"
-                      disabled={isSubmitting}
-                      className="w-full h-11 bg-primary text-primary-foreground
-                      hover:bg-primary/90 shadow-lg shadow-primary/30 transition-all
-                      gap-2
-                    "
-                    >
-                      {isSubmitting
-                        ? (lang === 'pt' ? 'Enviando...' : 'Sending...')
-                        : data.contact.form.btn
-                      }
-
-                      {!isSubmitting && (
-                        <motion.span
-                          initial={{ x: 0 }}
-                          whileHover={{ x: 4 }}
-                          transition={{ type: 'spring', stiffness: 300 }}
-                        >
-                          <FaIcons.FaArrowUp className="rotate-45" size={14} />
-                        </motion.span>
-                      )}
-                    </Button>
-                  </motion.div>
-
-                </motion.form>
-
-                {/* EXTRA INFORMATION */}
-                <motion.div
-                  variants={itemVariants}
-                  className="mt-10 flex flex-col md:flex-row justify-center items-center gap-6 text-muted-foreground"
-                >
-                  <span
-                    className="flex items-center gap-2"
-                  >
-                    <FaIcons.FaEnvelope size={16} />
-                    vprezende.work@gmail.com
-                  </span>
-
-                  <span className="flex items-center gap-2">
-                    <FaIcons.FaMapMarkerAlt size={16} />
-                    {lang == "pt" ? "Brasil" : "Brazil"}
-                  </span>
-                </motion.div>
-
-              </CardContent>
-            </Card>
+            <span className="flex items-center gap-2">
+              <FaIcons.FaMapMarkerAlt size={16} />
+              {lang == "pt" ? "Brasil" : "Brazil"}
+            </span>
           </motion.div>
 
         </div>
       </motion.section>
-
 
       {/* Scroll Top Button */}
       <AnimatePresence>
