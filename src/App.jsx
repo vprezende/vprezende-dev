@@ -54,18 +54,40 @@ const itemVariants = {
 
 const CustomCursor = () => {
   const cursorRef = useRef(null)
+
   useEffect(() => {
     const cursor = cursorRef.current
+    
     const moveCursor = (e) => {
       if (cursor) {
         cursor.style.left = `${e.clientX}px`
         cursor.style.top = `${e.clientY}px`
+        
+        cursor.style.opacity = 1
       }
     }
+
+    const hideCursor = () => {
+      if (cursor) cursor.style.opacity = 0
+    }
+
     window.addEventListener("mousemove", moveCursor)
-    return () => window.removeEventListener("mousemove", moveCursor)
+    window.addEventListener("mouseout", hideCursor)
+    window.addEventListener("mouseover", moveCursor)
+
+    return () => {
+      window.removeEventListener("mousemove", moveCursor)
+      window.removeEventListener("mouseout", hideCursor)
+      window.removeEventListener("mouseover", moveCursor)
+    }
   }, [])
-  return <div ref={cursorRef} className="fixed w-6 h-6 border-2 border-primary rounded-full pointer-events-none z-[9999] -translate-x-1/2 -translate-y-1/2 mix-blend-difference hidden md:block" />
+
+  return (
+    <div 
+      ref={cursorRef} 
+      className="fixed w-6 h-6 border-2 border-primary rounded-full pointer-events-none z-[9999] -translate-x-1/2 -translate-y-1/2 mix-blend-difference hidden md:block opacity-0 transition-opacity duration-300 ease-out" 
+    />
+  )
 }
 
 const ParticleBackground = () => {
