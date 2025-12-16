@@ -265,7 +265,7 @@ function App() {
             transition={{ type: "spring", bounce: 0.5, duration: 0.8 }}
           >
             <Badge variant="outline" className="mb-4 text-primary border-primary/50 px-4 py-1 text-sm backdrop-blur-sm">
-              {lang == "pt" ? "Disponível Para Projetos" : "Available For Projects"}
+              {lang == "pt" ? "Disponível para Projetos" : "Available for Projects"}
             </Badge>
           </motion.div>
 
@@ -349,7 +349,7 @@ function App() {
                     <h3 className="text-2xl font-bold">{data.hero.name}</h3>
                     <div className="flex items-center gap-2 text-muted-foreground mt-2 text-sm bg-muted/50 px-3 py-1 rounded-full">
                       <FaIcons.FaMapMarkerAlt className="text-red-500" />
-                      {data.about.stats.location}
+                      {data.hero.location}
                     </div>
                   </div>
 
@@ -499,13 +499,13 @@ function App() {
             viewport={viewportConfig}
             className="grid md:grid-cols-3 gap-8"
           >
-            {/* Mobile Branch */}
+            {/* Frontend Branch */}
             <motion.div variants={itemVariants} className="space-y-4">
               <h3 className="text-xl font-bold text-center border-b border-blue-500/30 pb-2 flex items-center justify-center gap-2">
-                <FaIcons.FaMobileAlt className="w-5 h-5 text-primary" /> Mobile
+                <FaIcons.FaLaptopCode className="w-5 h-5 text-primary" /> Frontend
               </h3>
               <div className="space-y-2">
-                {skillsData.mobile.map(skill => (
+                {skillsData.frontend.map(skill => (
                   <motion.div
                     key={skill.name}
                     whileHover={{ x: 5, scale: 1.02, backgroundColor: "rgba(4, 170, 255, 0.1)" }}

@@ -1,21 +1,23 @@
 {
-  "mobile": [
-    { "name": "Flutter", "level": 4 },
-    { "name": "Dart", "level": 4 },
-    { "name": "Firebase", "level": 3 },
-    { "name": "Mobile Architecture", "level": 3 }
+  "frontend": [
+    { "name": "Flutter", "level": 2 },
+    { "name": "Dart", "level": 2 },
+    { "name": "API Integration", "level": 2 },
+    { "name": "Unit Testing", "level": 1 },
+    { "name": "Responsive Design", "level": 2 }
   ],
   "backend": [
-    { "name": "PostgreSQL", "level": 4 },
-    { "name": "SQLite", "level": 3 },
-    { "name": "MongoDB", "level": 3 },
-    { "name": "Prisma", "level": 4 }
+    { "name": "PostgreSQL", "level": 1 },
+    { "name": "Firebase", "level": 1 },
+    { "name": "SQLite", "level": 1 },
+    { "name": "MongoDB", "level": 1 },
+    { "name": "Prisma", "level": 1 }
   ],
   "tools": [
-    { "name": "Docker", "level": 4 },
-    { "name": "Linux", "level": 3 },
-    { "name": "Figma", "level": 3 },
-    { "name": "Insomnia", "level": 4 },
-    { "name": "Git/GitHub", "level": 5 }
+    { "name": "Docker", "level": 1 },
+    { "name": "Linux", "level": 2 },
+    { "name": "Figma", "level": 2 },
+    { "name": "Insomnia", "level": 2 },
+    { "name": "Git/GitHub", "level": 2 }
   ]
 }

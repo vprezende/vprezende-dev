@@ -3,7 +3,7 @@
     "id": 1,
     "title": "AgroSync",
     "descPT": "Solução completa em Flutter para planejamento e manejo de sistemas de Integração Lavoura-Pecuária-Floresta (ILPF). Permite desenho de mapas e análise de solo.",
-    "descEN": "Complete Flutter solution for planning and managing Crop-Livestock-Forest Integration (ILPF) systems. Allows map drawing and detailed soil analysis.",
+    "descEN": "Complete Flutter solution for planning and managing Crop-Livestock-Forest Integration (ICLF) systems. Allows map drawing and detailed soil analysis.",
     "tags": ["Flutter", "Dart", "Google Maps API", "Clean Arch"],
     "status": "public",
     "code": "https://github.com/vprezende/agro_sync",

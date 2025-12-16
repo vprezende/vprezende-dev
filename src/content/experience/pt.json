@@ -11,10 +11,10 @@
     },
     {
       "id": 2,
-      "role": "Software Engineer / Freelancer",
+      "role": "Engenheiro de Software / Freelancer",
       "company": "Autônomo",
       "period": "Atualmente",
-      "desc": "Desenvolvimento de soluções mobile com Flutter e automações para clientes, focando em arquitetura limpa, performance e entregas ágeis."
+      "desc": "Desenvolvimento de soluções de software com Flutter para clientes, com foco em Clean Architecture, performance e entregas ágeis."
     }
   ]
 }

@@ -7,14 +7,14 @@
       "role": "Technological Innovation Researcher (Flutter)",
       "company": "IFF - Instituto Federal Fluminense",
       "period": "Mar 2025 - Present",
-      "desc": "As the Primary Software Engineer and sole developer (Flutter/Dart), I manage the entire project lifecycle – from UI/UX design to implementation. This project focuses on optimizing sustainable land use in ILPF systems."
+      "desc": "As the Primary Software Engineer and sole developer (Flutter/Dart), I manage the entire project lifecycle – from UI/UX design to implementation. This project focuses on optimizing sustainable land use in ICLF systems."
     },
     {
       "id": 2,
       "role": "Software Engineer / Freelancer",
       "company": "Self-Employed",
       "period": "Currently",
-      "desc": "Developing mobile solutions with Flutter and automations for clients, focusing on clean architecture, performance, and agile delivery."
+      "desc": "Developing software solutions with Flutter for clients, focusing on Clean Architecture, performance, and agile delivery."
     }
   ]
 }
