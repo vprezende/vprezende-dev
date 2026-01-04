@@ -106,6 +106,8 @@ function App() {
   const [activeSection, setActiveSection] = useState("home")
   const [showScrollTop, setShowScrollTop] = useState(false)
 
+  const isScrollingRef = useRef(false)
+
   const data = lang === "pt" ? dataPT : dataEn;
   const experienceData = lang == "pt" ? experienceDataPT : experienceDataEN;
 
@@ -113,31 +115,118 @@ function App() {
 
   useEffect(() => {
     const handleScroll = () => {
+      // Se a animação do clique estiver rodando, ignora
+      if (isScrollingRef.current) return
+
       const scrollY = window.scrollY
       const windowHeight = window.innerHeight
       const documentHeight = document.documentElement.scrollHeight
 
       setShowScrollTop(scrollY > 500)
 
-      if (windowHeight + scrollY >= documentHeight - 100) {
-        setActiveSection("contact")
-        return
-      }
-
+      let newActiveSection = "home"
+      
+      // 1. Loop padrão
       for (const section of navOrder) {
         const el = document.getElementById(section)
-        if (el && scrollY >= (el.offsetTop - 200)) {
-          setActiveSection(section)
+        if (el && scrollY >= (el.offsetTop - 150)) {
+          newActiveSection = section
         }
       }
+
+      // 2. Lógica para Espaço Curto (Projects vs Contact)
+      // Margem de 50px para detectar que chegou no fundo
+      const isAtBottom = windowHeight + scrollY >= documentHeight - 50
+
+      if (isAtBottom) {
+        const projectsEl = document.getElementById("projects")
+        
+        if (projectsEl) {
+           // AQUI ESTÁ A MÁGICA:
+           // O "ponto ideal" de Projects é o Topo dele MENOS a altura da Navbar (aprox 80px)
+           // Quando você clica no botão, ele vai para essa posição exata.
+           const targetPosition = projectsEl.offsetTop - 80;
+           
+           // Calcula a distância atual para esse ponto ideal
+           const distFromTarget = Math.abs(scrollY - targetPosition);
+           
+           // Se a distância for muito pequena (< 20px), significa que você clicou no botão
+           // ou alinhou manualmente no topo. Mantém Projects.
+           if (distFromTarget < 20) {
+             newActiveSection = "projects"
+           } else {
+             // Se você rodou a bolinha e desceu (se afastou do ponto ideal), 
+             // entrega para o Contact imediatamente.
+             newActiveSection = "contact"
+           }
+        } else {
+           newActiveSection = "contact"
+        }
+      }
+
+      setActiveSection(newActiveSection)
     }
-    window.addEventListener("scroll", handleScroll)
+
+    window.addEventListener("scroll", handleScroll, { passive: true })
     return () => window.removeEventListener("scroll", handleScroll)
   }, [navOrder])
 
+  useEffect(() => {
+    // 1. Evita que o navegador lembre o scroll anterior
+    if ('scrollRestoration' in history) {
+      history.scrollRestoration = 'manual';
+    }
+    // 2. Rola para o topo
+    window.scrollTo(0, 0);
+    // 3. Reseta o highlight
+    setActiveSection("home");
+  }, []);
+  
+
   const scrollTo = (id) => {
     setIsMenuOpen(false)
-    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" })
+    setActiveSection(id) // Muda o azul imediatamente
+    
+    isScrollingRef.current = true // Trava o sensor
+
+    const target = document.getElementById(id)
+    if (!target) return
+
+    const headerOffset = 80; // <--- AJUSTE: Altura da sua Navbar (aprox 80px)
+    const elementPosition = target.getBoundingClientRect().top
+    const offsetPosition = elementPosition + window.scrollY - headerOffset // <--- Subtrai o offset
+
+    const startPosition = window.scrollY
+    const distance = offsetPosition - startPosition // <--- Calcula distância considerando o offset
+    const duration = 800 
+    let startTime = null
+
+    const ease = (t, b, c, d) => {
+      t /= d / 2;
+      if (t < 1) return c / 2 * t * t * t + b;
+      t -= 2;
+      return c / 2 * (t * t * t + 2) + b;
+    };
+
+    function animation(currentTime) {
+      if (startTime === null) startTime = currentTime
+      const timeElapsed = currentTime - startTime
+      
+      const run = ease(timeElapsed, startPosition, distance, duration)
+      window.scrollTo(0, run)
+
+      if (timeElapsed < duration) {
+        requestAnimationFrame(animation)
+      } else {
+        window.scrollTo(0, offsetPosition) // Garante o final exato com offset
+        // Pequeno delay extra de segurança antes de liberar o sensor
+        setTimeout(() => {
+          isScrollingRef.current = false 
+        }, 100)
+      }
+    }
+
+    requestAnimationFrame(animation)
   }
 
   useEffect(() => {
