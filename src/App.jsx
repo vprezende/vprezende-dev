@@ -57,12 +57,12 @@ const CustomCursor = () => {
 
   useEffect(() => {
     const cursor = cursorRef.current
-    
+
     const moveCursor = (e) => {
       if (cursor) {
         cursor.style.left = `${e.clientX}px`
         cursor.style.top = `${e.clientY}px`
-        
+
         cursor.style.opacity = 1
       }
     }
@@ -83,9 +83,9 @@ const CustomCursor = () => {
   }, [])
 
   return (
-    <div 
-      ref={cursorRef} 
-      className="fixed w-6 h-6 border-2 border-primary rounded-full pointer-events-none z-[9999] -translate-x-1/2 -translate-y-1/2 mix-blend-difference hidden md:block opacity-0 transition-opacity duration-300 ease-out" 
+    <div
+      ref={cursorRef}
+      className="fixed w-6 h-6 border-2 border-primary rounded-full pointer-events-none z-[9999] -translate-x-1/2 -translate-y-1/2 mix-blend-difference hidden md:block opacity-0 transition-opacity duration-300 ease-out"
     />
   )
 }
@@ -129,7 +129,7 @@ function App() {
       setShowScrollTop(scrollY > 500)
 
       let newActiveSection = "home"
-      
+
       for (const section of navOrder) {
         const el = document.getElementById(section)
         if (el && scrollY >= (el.offsetTop - 150)) {
@@ -141,18 +141,18 @@ function App() {
 
       if (isAtBottom) {
         const projectsEl = document.getElementById("projects")
-        
+
         if (projectsEl) {
-           const targetPosition = projectsEl.offsetTop - 80;
-           const distFromTarget = Math.abs(scrollY - targetPosition);
-           
-           if (distFromTarget < 20) {
-             newActiveSection = "projects"
-           } else {
-             newActiveSection = "contact"
-           }
+          const targetPosition = projectsEl.offsetTop - 80;
+          const distFromTarget = Math.abs(scrollY - targetPosition);
+
+          if (distFromTarget < 20) {
+            newActiveSection = "projects"
+          } else {
+            newActiveSection = "contact"
+          }
         } else {
-           newActiveSection = "contact"
+          newActiveSection = "contact"
         }
       }
 
@@ -170,12 +170,12 @@ function App() {
     window.scrollTo(0, 0);
     setActiveSection("home");
   }, []);
-  
+
 
   const scrollTo = (id) => {
     setIsMenuOpen(false)
     setActiveSection(id)
-    
+
     isScrollingRef.current = true
 
     const target = document.getElementById(id)
@@ -187,7 +187,7 @@ function App() {
 
     const startPosition = window.scrollY
     const distance = offsetPosition - startPosition
-    const duration = 800 
+    const duration = 800
     let startTime = null
 
     const ease = (t, b, c, d) => {
@@ -200,7 +200,7 @@ function App() {
     function animation(currentTime) {
       if (startTime === null) startTime = currentTime
       const timeElapsed = currentTime - startTime
-      
+
       const run = ease(timeElapsed, startPosition, distance, duration)
       window.scrollTo(0, run)
 
@@ -209,7 +209,7 @@ function App() {
       } else {
         window.scrollTo(0, offsetPosition)
         setTimeout(() => {
-          isScrollingRef.current = false 
+          isScrollingRef.current = false
         }, 100)
       }
     }
@@ -236,7 +236,7 @@ function App() {
             initial={{ opacity: 0, x: -20, filter: "drop-shadow(0px 0px 0px transparent)" }}
             animate={{ opacity: 1, x: 0, filter: "drop-shadow(0px 0px 0px transparent)" }}
             whileHover={{ scale: 1.05, filter: "drop-shadow(0px 0px 8px rgb(59, 130, 246))" }}
-            className="flex items-center text-xl font-bold text-primary cursor-pointer"
+            className="flex items-center text-xl font-bold text-primary cursor-none"
             onClick={() => scrollTo("home")}
           >
             <FaIcons.FaTerminal />
@@ -390,7 +390,7 @@ function App() {
                 </Button>
               </motion.div>
             )}
-            
+
             <motion.div className="rounded-lg" whileHover={magicalHover} whileTap={tapEffect}>
               <Button size="lg" variant="outline" onClick={() => scrollTo("contact")} className="bg-background/50 backdrop-blur-md w-full">
                 {data.hero.cta_secondary}
@@ -556,10 +556,9 @@ function App() {
           </motion.div>
         </div>
       </section>
-      
+
       {/* --- SKILLS --- */}
       <section id="skills" className="py-20 px-4">
-         {/* ... Conteúdo de Skills Mantido ... */}
         <div className="max-w-5xl mx-auto">
           <motion.div
             initial={{ scale: 0.8, opacity: 0 }}
@@ -591,7 +590,7 @@ function App() {
                   <motion.div
                     key={skill.name}
                     whileHover={{ x: 5, scale: 1.02, backgroundColor: "rgba(4, 170, 255, 0.1)" }}
-                    className={`flex items-center justify-between p-3 bg-background rounded-lg border cursor-pointer transition-all duration-300`}
+                    className={`flex items-center justify-between p-3 bg-background rounded-lg border cursor-none transition-all duration-300`}
                   >
                     <span>{skill.name}</span>
                     <div className="flex gap-1">
@@ -612,7 +611,7 @@ function App() {
                   <motion.div
                     key={skill.name}
                     whileHover={{ x: 5, scale: 1.02, backgroundColor: "rgba(34, 197, 94, 0.1)" }}
-                    className={`flex items-center justify-between p-3 bg-background rounded-lg border cursor-pointer transition-all duration-300`}
+                    className={`flex items-center justify-between p-3 bg-background rounded-lg border cursor-none transition-all duration-300`}
                   >
                     <span>{skill.name}</span>
                     <div className="flex gap-1">
@@ -633,7 +632,7 @@ function App() {
                   <motion.div
                     key={skill.name}
                     whileHover={{ x: 5, scale: 1.02, backgroundColor: "rgba(168, 85, 247, 0.1)" }}
-                    className={`flex items-center justify-between p-3 bg-background rounded-lg border cursor-pointer transition-all duration-300`}
+                    className={`flex items-center justify-between p-3 bg-background rounded-lg border cursor-none transition-all duration-300`}
                   >
                     <span>{skill.name}</span>
                     <div className="flex gap-1">
