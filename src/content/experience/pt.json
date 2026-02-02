@@ -6,15 +6,15 @@
       "id": 1,
       "role": "Pesquisador de Inovação Tecnológica (Flutter)",
       "company": "IFF - Instituto Federal Fluminense",
-      "period": "Mar 2025 - Presente",
-      "desc": "Engenheiro de Software Principal e único desenvolvedor (Flutter/Dart). Gerencio todo o ciclo de vida do projeto – do design UI/UX à implementação. O projeto foca na otimização do uso sustentável da terra em sistemas ILPF."
+      "period": "Mar 2025 - Dez 2025",
+      "desc": "Como Engenheiro de Software Líder do \"AgroSync\", liderei a engenharia e a prototipagem de uma solução Desktop de alta performance projetada para revolucionar o planejamento de Integração Lavoura-Pecuária-Floresta (ILPF). Ao implementar algoritmos personalizados de geometria computacional e otimizar o processamento de dados, arquitetei uma solução com potencial estimado de reduzir o tempo técnico de planejamento em ~60% comparado aos métodos manuais. Gerenciei 100% do ciclo de vida da pesquisa — do UI/UX de alta fidelidade no Figma à validação técnica em Clean Architecture com Flutter — entregando uma arquitetura escalável e a base tecnológica para maximizar a produtividade agrícola na região do Rio de Janeiro."
     },
     {
       "id": 2,
-      "role": "Engenheiro de Software / Freelancer",
+      "role": "Engenheiro de Software",
       "company": "Autônomo",
       "period": "Atualmente",
-      "desc": "Desenvolvimento de soluções de software com Flutter para clientes, com foco em Clean Architecture, performance e entregas ágeis."
+      "desc": "Desenvolvimento de aplicativos móveis proprietários com Flutter, com foco em Clean Architecture, performance e gestão completa do ciclo de vida do produto."
     }
   ]
 }

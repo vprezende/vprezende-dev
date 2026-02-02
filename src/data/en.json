@@ -17,7 +17,7 @@
   },
   "about": {
     "title": "About Me",
-    "bio": "I’m a Software Engineer working with Flutter to deliver high-quality software solutions. My focus is on creating high-performance software, combining functional design with solid architecture principles such as Clean Architecture.",
+    "bio": "I'm a Software Engineer working with Flutter to deliver high-quality software solutions. My focus is on creating high-performance software, combining functional design with solid architecture principles such as Clean Architecture.",
     "education": {
       "title": "Education",
       "list": [
@@ -69,6 +69,6 @@
   },
   "contact": {
     "title": "Let's Talk?",
-    "subtitle": "Available for new projects and challenges."
+    "subtitle": "Available for new professional opportunities."
   }
 }

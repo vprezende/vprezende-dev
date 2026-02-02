@@ -111,11 +111,15 @@ function App() {
   const data = lang === "pt" ? dataPT : dataEn;
   const experienceData = lang == "pt" ? experienceDataPT : experienceDataEN;
 
-  const navOrder = useMemo(() => ["home", "about", "skills", "experience", "projects", "contact"], []);
+  const hasProjects = projectsData && projectsData.length > 0;
+
+  const navOrder = useMemo(() => {
+    const order = ["home", "about", "skills", "experience", "projects", "contact"];
+    return hasProjects ? order : order.filter(item => item !== "projects");
+  }, [hasProjects]);
 
   useEffect(() => {
     const handleScroll = () => {
-      // Se a animação do clique estiver rodando, ignora
       if (isScrollingRef.current) return
 
       const scrollY = window.scrollY
@@ -126,7 +130,6 @@ function App() {
 
       let newActiveSection = "home"
       
-      // 1. Loop padrão
       for (const section of navOrder) {
         const el = document.getElementById(section)
         if (el && scrollY >= (el.offsetTop - 150)) {
@@ -134,29 +137,18 @@ function App() {
         }
       }
 
-      // 2. Lógica para Espaço Curto (Projects vs Contact)
-      // Margem de 50px para detectar que chegou no fundo
       const isAtBottom = windowHeight + scrollY >= documentHeight - 50
 
       if (isAtBottom) {
         const projectsEl = document.getElementById("projects")
         
         if (projectsEl) {
-           // AQUI ESTÁ A MÁGICA:
-           // O "ponto ideal" de Projects é o Topo dele MENOS a altura da Navbar (aprox 80px)
-           // Quando você clica no botão, ele vai para essa posição exata.
            const targetPosition = projectsEl.offsetTop - 80;
-           
-           // Calcula a distância atual para esse ponto ideal
            const distFromTarget = Math.abs(scrollY - targetPosition);
            
-           // Se a distância for muito pequena (< 20px), significa que você clicou no botão
-           // ou alinhou manualmente no topo. Mantém Projects.
            if (distFromTarget < 20) {
              newActiveSection = "projects"
            } else {
-             // Se você rodou a bolinha e desceu (se afastou do ponto ideal), 
-             // entrega para o Contact imediatamente.
              newActiveSection = "contact"
            }
         } else {
@@ -172,32 +164,29 @@ function App() {
   }, [navOrder])
 
   useEffect(() => {
-    // 1. Evita que o navegador lembre o scroll anterior
     if ('scrollRestoration' in history) {
       history.scrollRestoration = 'manual';
     }
-    // 2. Rola para o topo
     window.scrollTo(0, 0);
-    // 3. Reseta o highlight
     setActiveSection("home");
   }, []);
   
 
   const scrollTo = (id) => {
     setIsMenuOpen(false)
-    setActiveSection(id) // Muda o azul imediatamente
+    setActiveSection(id)
     
-    isScrollingRef.current = true // Trava o sensor
+    isScrollingRef.current = true
 
     const target = document.getElementById(id)
     if (!target) return
 
-    const headerOffset = 80; // <--- AJUSTE: Altura da sua Navbar (aprox 80px)
+    const headerOffset = 80;
     const elementPosition = target.getBoundingClientRect().top
-    const offsetPosition = elementPosition + window.scrollY - headerOffset // <--- Subtrai o offset
+    const offsetPosition = elementPosition + window.scrollY - headerOffset
 
     const startPosition = window.scrollY
-    const distance = offsetPosition - startPosition // <--- Calcula distância considerando o offset
+    const distance = offsetPosition - startPosition
     const duration = 800 
     let startTime = null
 
@@ -218,8 +207,7 @@ function App() {
       if (timeElapsed < duration) {
         requestAnimationFrame(animation)
       } else {
-        window.scrollTo(0, offsetPosition) // Garante o final exato com offset
-        // Pequeno delay extra de segurança antes de liberar o sensor
+        window.scrollTo(0, offsetPosition)
         setTimeout(() => {
           isScrollingRef.current = false 
         }, 100)
@@ -395,11 +383,14 @@ function App() {
             transition={{ delay: 0.4 }}
             className="flex flex-col sm:flex-row gap-4 justify-center"
           >
-            <motion.div className="rounded-lg" whileHover={magicalHover} whileTap={tapEffect}>
-              <Button size="lg" onClick={() => scrollTo("projects")} className="bg-primary hover:bg-primary/90 shadow-lg shadow-primary/20 w-full">
-                {data.hero.cta_primary}
-              </Button>
-            </motion.div>
+            {hasProjects && (
+              <motion.div className="rounded-lg" whileHover={magicalHover} whileTap={tapEffect}>
+                <Button size="lg" onClick={() => scrollTo("projects")} className="bg-primary hover:bg-primary/90 shadow-lg shadow-primary/20 w-full">
+                  {data.hero.cta_primary}
+                </Button>
+              </motion.div>
+            )}
+            
             <motion.div className="rounded-lg" whileHover={magicalHover} whileTap={tapEffect}>
               <Button size="lg" variant="outline" onClick={() => scrollTo("contact")} className="bg-background/50 backdrop-blur-md w-full">
                 {data.hero.cta_secondary}
@@ -565,8 +556,10 @@ function App() {
           </motion.div>
         </div>
       </section>
+      
       {/* --- SKILLS --- */}
       <section id="skills" className="py-20 px-4">
+         {/* ... Conteúdo de Skills Mantido ... */}
         <div className="max-w-5xl mx-auto">
           <motion.div
             initial={{ scale: 0.8, opacity: 0 }}
@@ -710,112 +703,114 @@ function App() {
       </section>
 
       {/* --- PROJECTS --- */}
-      <section id="projects" className="py-20 px-4">
-        <div className="max-w-6xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={viewportConfig}
-            transition={{ duration: 0.6 }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-3xl font-bold mb-4">{data.projects.title}</h2>
-            <p className="text-muted-foreground">{data.projects.subtitle}</p>
-          </motion.div>
+      {hasProjects && (
+        <section id="projects" className="py-20 px-4">
+          <div className="max-w-6xl mx-auto">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={viewportConfig}
+              transition={{ duration: 0.6 }}
+              className="text-center mb-16"
+            >
+              <h2 className="text-3xl font-bold mb-4">{data.projects.title}</h2>
+              <p className="text-muted-foreground">{data.projects.subtitle}</p>
+            </motion.div>
 
-          <motion.div
-            variants={containerVariants}
-            initial="hidden"
-            whileInView="show"
-            viewport={viewportConfig}
-            className="flex flex-wrap justify-center gap-6"
-          >
-            {projectsData.map((project) => {
-              const statusData = data.projects.status[project.status];
-              return (
-                <motion.div
-                  key={project.id}
-                  variants={itemVariants}
-                  whileHover={magicalHover}
-                  className="w-full md:w-[350px] lg:w-[400px] rounded-xl"
-                >
-                  <Card className="h-full bg-card/50 flex flex-col hover:border-primary/50 transition-colors border-border/50 bg-card/50 backdrop-blur-sm rounded-xl overflow-hidden">
-                    <CardHeader>
-                      <div className="flex justify-between items-start mb-2">
-                        <div className="p-2 bg-muted rounded-md transition-colors">
-                          {<FaIcons.FaTerminal className="w-10 h-10 text-primary" />}
-                        </div>
-                        <Badge variant="outline" className={statusData.className}>
-                          {statusData.label}
-                        </Badge>
-                      </div>
-                      <CardTitle className="transition-colors">
-                        {project.title}
-                      </CardTitle>
-                    </CardHeader>
-                    <CardContent className="flex-1 flex flex-col">
-                      <CardDescription className="mb-4 min-h-[80px]">
-                        {lang === "pt" ? project.descPT : project.descEN}
-                      </CardDescription>
-                      <div className="flex flex-wrap gap-2 mb-4 mt-auto">
-                        {project.tags.map(tag => (
-                          <Badge key={tag} variant="secondary" className="text-xs border-primary/10">
-                            {tag}
+            <motion.div
+              variants={containerVariants}
+              initial="hidden"
+              whileInView="show"
+              viewport={viewportConfig}
+              className="flex flex-wrap justify-center gap-6"
+            >
+              {projectsData.map((project) => {
+                const statusData = data.projects.status[project.status];
+                return (
+                  <motion.div
+                    key={project.id}
+                    variants={itemVariants}
+                    whileHover={magicalHover}
+                    className="w-full md:w-[350px] lg:w-[400px] rounded-xl"
+                  >
+                    <Card className="h-full bg-card/50 flex flex-col hover:border-primary/50 transition-colors border-border/50 bg-card/50 backdrop-blur-sm rounded-xl overflow-hidden">
+                      <CardHeader>
+                        <div className="flex justify-between items-start mb-2">
+                          <div className="p-2 bg-muted rounded-md transition-colors">
+                            {<FaIcons.FaTerminal className="w-10 h-10 text-primary" />}
+                          </div>
+                          <Badge variant="outline" className={statusData.className}>
+                            {statusData.label}
                           </Badge>
-                        ))}
-                      </div>
-                      <div className="flex justify-center gap-3 mt-4">
-                        {project.code && (
-                          <motion.div
-                            className="rounded-md"
-                            whileHover={magicalHover}
-                            whileTap={tapEffect}
-                          >
-                            <Button
-                              size="sm"
-                              className="bg-zinc-800 text-zinc-100 hover:bg-zinc-800 transition-none"
-                              asChild
+                        </div>
+                        <CardTitle className="transition-colors">
+                          {project.title}
+                        </CardTitle>
+                      </CardHeader>
+                      <CardContent className="flex-1 flex flex-col">
+                        <CardDescription className="mb-4 min-h-[80px]">
+                          {lang === "pt" ? project.descPT : project.descEN}
+                        </CardDescription>
+                        <div className="flex flex-wrap gap-2 mb-4 mt-auto">
+                          {project.tags.map(tag => (
+                            <Badge key={tag} variant="secondary" className="text-xs border-primary/10">
+                              {tag}
+                            </Badge>
+                          ))}
+                        </div>
+                        <div className="flex justify-center gap-3 mt-4">
+                          {project.code && (
+                            <motion.div
+                              className="rounded-md"
+                              whileHover={magicalHover}
+                              whileTap={tapEffect}
                             >
-                              <a href={project.code} target="_blank" rel="noreferrer">
-                                <FaIcons.FaCode size={16} className="mr-2" />
-                                Code
-                              </a>
-                            </Button>
-                          </motion.div>
-                        )}
+                              <Button
+                                size="sm"
+                                className="bg-zinc-800 text-zinc-100 hover:bg-zinc-800 transition-none"
+                                asChild
+                              >
+                                <a href={project.code} target="_blank" rel="noreferrer">
+                                  <FaIcons.FaCode size={16} className="mr-2" />
+                                  Code
+                                </a>
+                              </Button>
+                            </motion.div>
+                          )}
 
-                        {project.design && (
-                          <motion.div
-                            className="rounded-md"
-                            whileHover={magicalHover}
-                            whileTap={tapEffect}
-                          >
-                            <Button
-                              size="sm"
-                              className="bg-purple-600 text-white hover:bg-purple-600 transition-none"
-                              asChild
+                          {project.design && (
+                            <motion.div
+                              className="rounded-md"
+                              whileHover={magicalHover}
+                              whileTap={tapEffect}
                             >
-                              <a href={project.design} target="_blank" rel="noreferrer">
-                                <FaIcons.FaFigma size={16} className="mr-2" />
-                                Design
-                              </a>
-                            </Button>
-                          </motion.div>
-                        )}
-                      </div>
-                    </CardContent>
-                  </Card>
-                </motion.div>
-              )
-            })}
-          </motion.div>
-        </div>
-      </section>
+                              <Button
+                                size="sm"
+                                className="bg-purple-600 text-white hover:bg-purple-600 transition-none"
+                                asChild
+                              >
+                                <a href={project.design} target="_blank" rel="noreferrer">
+                                  <FaIcons.FaFigma size={16} className="mr-2" />
+                                  Design
+                                </a>
+                              </Button>
+                            </motion.div>
+                          )}
+                        </div>
+                      </CardContent>
+                    </Card>
+                  </motion.div>
+                )
+              })}
+            </motion.div>
+          </div>
+        </section>
+      )}
 
       {/* --- CONTACT --- */}
       <motion.section
         id="contact"
-        className="py-20 px-4 relative bg-muted/20"
+        className={`py-20 px-4 relative ${hasProjects ? "bg-muted/20" : "bg-background"}`}
         variants={containerVariants}
         initial="hidden"
         whileInView="show"
