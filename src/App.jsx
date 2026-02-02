@@ -236,7 +236,7 @@ function App() {
             initial={{ opacity: 0, x: -20, filter: "drop-shadow(0px 0px 0px transparent)" }}
             animate={{ opacity: 1, x: 0, filter: "drop-shadow(0px 0px 0px transparent)" }}
             whileHover={{ scale: 1.05, filter: "drop-shadow(0px 0px 8px rgb(59, 130, 246))" }}
-            className="flex items-center text-xl font-bold text-primary cursor-none"
+            className="flex items-center text-xl font-bold text-primary md:cursor-none"
             onClick={() => scrollTo("home")}
           >
             <FaIcons.FaTerminal />
