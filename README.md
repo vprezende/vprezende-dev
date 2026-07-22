@@ -1,4 +1,4 @@
-# Developer Portfolio
+# Software Engineer Portfolio
 
 Welcome to the repository for my personal developer portfolio, a fast, lightweight, and responsive website built using **VitePress**. This site showcases my projects, professional experience, technical skills, education, and contact information.
 
