@@ -1,0 +1,51 @@
+// Theme Variables
+$background: oklch(0.145 0 0);
+$background-alpha-80: oklch(0.145 0 0 / 80%);
+$background-alpha-50: oklch(0.145 0 0 / 50%);
+
+$foreground: oklch(0.985 0 0);
+
+$card: oklch(0.205 0 0);
+$card-alpha-50: oklch(0.205 0 0 / 50%);
+
+$card-foreground: oklch(0.985 0 0);
+
+$primary: oklch(0.7 0.2 240);
+$primary-alpha-50: oklch(0.7 0.2 240 / 50%);
+$primary-alpha-20: oklch(0.7 0.2 240 / 20%);
+$primary-alpha-10: oklch(0.7 0.2 240 / 10%);
+$primary-foreground: oklch(0.985 0 0);
+$primary-hover: oklch(0.75 0.18 240);
+$primary-glow: oklch(0.7 0.2 240 / 40%);
+
+$secondary: oklch(0.269 0 0);
+
+$muted: oklch(0.269 0 0);
+
+$muted-alpha-50: oklch(0.269 0 0 / 50%);
+$muted-alpha-20: oklch(0.269 0 0 / 20%);
+
+$muted-foreground: oklch(0.708 0 0);
+
+$border: oklch(1 0 0 / 10%);
+$border-alpha-50: oklch(1 0 0 / 5%);
+
+$input: oklch(1 0 0 / 15%);
+$ring: oklch(0.556 0 0);
+$radius: 0.625rem;
+
+// Color categories for green/yellow/purple
+$emerald: oklch(0.7 0.18 160);
+$emerald-alpha-50: oklch(0.7 0.18 160 / 50%);
+$emerald-alpha-30: oklch(0.7 0.18 160 / 30%);
+$emerald-alpha-10: oklch(0.7 0.18 160 / 10%);
+
+$yellow: oklch(0.8 0.15 85);
+$yellow-alpha-30: oklch(0.8 0.15 85 / 30%);
+$yellow-alpha-20: oklch(0.8 0.15 85 / 20%);
+$yellow-alpha-10: oklch(0.8 0.15 85 / 10%);
+
+$purple: oklch(0.6 0.2 300);
+$purple-alpha-50: oklch(0.6 0.2 300 / 50%);
+$purple-alpha-30: oklch(0.6 0.2 300 / 30%);
+$purple-alpha-10: oklch(0.6 0.2 300 / 10%);

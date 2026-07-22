@@ -1,2 +1,7 @@
-node_modules
-.env.local
+# Dependencies
+node_modules/
+
+# VitePress build and cache directories
+docs/.vitepress/dist/
+docs/.vitepress/cache/
+.vercel

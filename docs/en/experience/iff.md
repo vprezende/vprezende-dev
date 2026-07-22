@@ -1,0 +1,8 @@
+---
+id: 1
+role: Technological Innovation Researcher (Flutter)
+company: IFF - Instituto Federal Fluminense
+period: Mar 2025 - Dec 2025
+---
+
+As the Lead Software Engineer for "AgroSync", I spearheaded the engineering and prototyping of a high-performance desktop solution designed to revolutionize Integrated Crop-Livestock-Forestry (ICLFS) planning. By implementing custom computational geometry algorithms and optimizing data processing, I architected a system projected to reduce technical planning time by ~60% compared to manual methods. I managed 100% of the research lifecycle — from high-fidelity UI/UX in Figma to technical validation using Clean Architecture in Flutter — delivering the scalable architecture and technological foundation aimed at maximizing agricultural productivity in the Rio de Janeiro region.

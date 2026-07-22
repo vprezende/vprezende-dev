@@ -1,26 +1,52 @@
-﻿
-# vprezende-dev
+# Developer Portfolio
 
-Welcome to the repository for **vprezende-dev**, a modern developer portfolio designed to showcase projects, skills, and professional experience. This application is built with a focus on performance, accessibility, and a cutting-edge developer experience.
+Welcome to the repository for my personal developer portfolio, a fast, lightweight, and responsive website built using **VitePress**. This site showcases my projects, professional experience, technical skills, education, and contact information.
 
 ## 🛠 Tech Stack
 
-This project leverages the latest ecosystem for React development:
+- **Core Framework:** [VitePress](https://vitepress.dev/) (Vue 3 powered Static Site Generator)
+- **UI & Components:** [Vue 3](https://vuejs.org/) (Custom SFC Layout & Composition API)
+- **Styling:** SCSS / Sass Modules (Modern variables, flex/grid layouts, micro-animations)
+- **Icons:** Official [@fortawesome/vue-fontawesome](https://fontawesome.com/) + [Lucide Vue Next](https://lucide.dev/)
+- **Linting:** [ESLint](https://eslint.org/) (Vue 3 Flat Configuration)
+- **Package Manager:** [Yarn](https://yarnpkg.com/)
 
-- **Core:** [React 19](https://react.dev/) + [Vite](https://vitejs.dev/)
-- **Styling:** [Tailwind CSS v4](https://tailwindcss.com/)
-- **UI Components:** [Shadcn/ui](https://ui.shadcn.com/) (built on Radix UI)
-- **Animations:** [Framer Motion](https://www.framer.com/motion/)
-- **Routing:** [React Router v7](https://reactrouter.com/)
-- **Forms:** React Hook Form + Zod
-- **Analytics:** Vercel Analytics
-- **Package Manager:** [pnpm](https://pnpm.io/)
+---
 
-## 🚀 Getting Started
+## 🚀 Features
+
+- **Multi-Language Support (EN / PT-BR):** Native bilingual support with client-side detection and dynamic frontmatter content binding.
+- **Card Scaling Animations:** Hover scale effects with separated GPU-accelerated animation wrappers to prevent text blurring.
+- **Data-Driven Architecture:** All portfolio content (about, skills, experience, projects, contact) is loaded dynamically from Markdown frontmatter.
+- **Responsive Layout:** Fluid layout built for mobile, tablet, and desktop viewports with responsive grid structures.
+
+---
+
+## 📂 Project Structure
+
+```text
+vprezende-dev/
+├── docs/                             # Document content and pages
+│   ├── .vitepress/                   # VitePress config and layout theme
+│   │   ├── config.js                 # Global configuration & routes
+│   │   └── theme/                    # Custom Vue components and SCSS styles
+│   │       ├── PortfolioLayout.vue   # Main single-page application layout
+│   │       └── styles/               # SCSS design system & animations
+│   ├── public/                       # Static public assets (e.g., favicon)
+│   ├── en/                           # English localization markdown files
+│   └── pt/                           # Portuguese localization markdown files
+├── package.json                      # Build scripts and project dependencies
+├── eslint.config.js                  # ESLint flat config file for Vue 3
+└── yarn.lock                         # Locked yarn package version tree
+```
+
+---
+
+## ⚡ Getting Started
 
 ### Prerequisites
 
-Ensure you have **Node.js** installed. This project uses **npm** as the package manager.
+Ensure you have **Node.js** (v18+) and **Yarn** installed.
 
 ### Installation
 
@@ -28,54 +54,31 @@ Ensure you have **Node.js** installed. This project uses **npm** as the package 
    ```bash
    git clone https://github.com/vprezende/vprezende-dev.git
    cd vprezende-dev
-	```
+   ```
 
-2.  **Install dependencies:**
+2. **Install dependencies:**
+   ```bash
+   yarn install
+   ```
 
-    ```bash
-    npm install
-    ```
+3. **Run the local development server:**
+   ```bash
+   yarn dev
+   ```
+   Open `http://localhost:5173` in your browser.
 
-3.  **Start the development server:**
-
-    ```bash
-    npm dev
-    ```
-
-    The app will run at `http://localhost:5173`.
-
-## 🔐 Security & Environment Variables
-
-This project uses environment variables for local secrets. Please adhere to the following security rules:
-
-  - **No Secrets in Git:** Never commit configuration files containing secrets (e.g., `.env.local`).
-  - **Client-Side Variables:** Any variable exposed to the client (Vite) **must** start with `VITE_` (e.g., `VITE_API_KEY`).
-  - **Templates:** Use `.env.local` for your actual values and `.env.example` as a template structure.
-
-### Git Hooks
-
-We have configured a local **pre-commit hook** (located in `.githooks/pre-commit`) that automatically blocks commits containing `.env` files to prevent accidental leaks.
-
-### Setup
-
-1.  Copy the example file:
-    ```bash
-    cp .env.example .env.local
-    ```
-2.  Fill in the values in `.env.local` (this file is git-ignored).
-3.  Access variables in your code:
-    ```js
-    import.meta.env.VITE_YOUR_KEY
-    ```
+---
 
 ## 📦 Scripts
 
-| Script | Description |
+| Command | Description |
 | :--- | :--- |
-| `npm dev` | Starts the development server with Vite. |
-| `npm build` | Builds the application for production. |
-| `npm preview` | Locally previews the production build. |
-| `npm lint` | Runs ESLint to ensure code quality. |
+| `yarn dev` | Launches the local VitePress hot-reload development server. |
+| `yarn build` | Builds the static site for production into `docs/.vitepress/dist/`. |
+| `yarn preview` | Serves a local preview of the built production static site. |
+| `yarn lint` | Runs ESLint to validate JS, Vue, and formatting syntax rules. |
+
+---
 
 ## 📄 License
 

@@ -1,0 +1,80 @@
+@use 'variables' as *;
+
+// Reset & Base Layout
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  border-color: $border;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: $background;
+  color: $foreground;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  overflow-x: hidden;
+  cursor: none !important;
+}
+
+p {
+  line-height: 1.7;
+}
+
+button, a, input, textarea {
+  cursor: none !important;
+  font-family: inherit;
+}
+
+// Global Classes
+.portfolio-root {
+  min-height: 100vh;
+  position: relative;
+  width: 100%;
+  padding-bottom: 0;
+  background-color: $background;
+  color: $foreground;
+  
+  // Custom Selection
+  ::selection {
+    background-color: $primary;
+    color: $background;
+  }
+}
+
+.icon-red {
+  color: oklch(0.605 0.17 22.2) !important;
+}
+
+// Custom cursor (desktop only)
+.custom-cursor {
+  position: fixed;
+  width: 1.5rem;
+  height: 1.5rem;
+  border: 2px solid $primary;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  mix-blend-mode: difference;
+  display: none;
+  opacity: 0;
+  transition: opacity 0.3s ease-out;
+
+  @media (min-width: 768px) {
+    display: block;
+  }
+}
+
+// Background Overlays
+.bg-overlay-container {
+  display: none;
+}
+
+// Borders helper
+.border-top {
+  border-top: 1px solid $border-alpha-50;
+}
