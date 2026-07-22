@@ -81,12 +81,12 @@ yarn dev
 
 ---
 
-## 💖 Support
+## ☕ Support
 
-If you found this project helpful, inspiring, or if you'd just like to support my work, consider buying me a coffee! Your support fuels my late-night coding sessions and helps me keep building cool things. ☕👇
+If you found this project helpful, inspiring, or if you'd just like to support my work, consider buying me a coffee! Your support fuels my late-night coding sessions and helps me keep building cool things. 👇
 
 <a href="https://www.buymeacoffee.com/vprezende" target="_blank">
-  <img src="https://raw.githubusercontent.com/pachadotdev/buymeacoffee-badges/main/bmc-yellow.svg" alt="Buy Me A Coffee" height="35">
+  <img src="https://raw.githubusercontent.com/pachadotdev/buymeacoffee-badges/main/bmc-yellow.svg" alt="Buy Me A Coffee" width="150" height="35">
 </a>
 
 ---
